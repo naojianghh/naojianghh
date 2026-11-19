@@ -64,7 +64,11 @@ def pixel_text(text: str, x: int, y: int, palette: dict, shadow: bool) -> tuple[
     body = "".join(rects)
     out = ""
     if shadow:
-        out += f'<g fill="{palette["accent2"]}" transform="translate(4 4)" opacity=".85">{body}</g>'
+        out += (
+            f'<g fill="{palette["accent2"]}" transform="translate(4 4)" opacity=".85">'
+            f'<animate attributeName="opacity" values=".85;.55;.85" dur="4s" repeatCount="indefinite"/>'
+            f"{body}</g>"
+        )
     out += f'<g fill="{palette["ink"]}">{body}</g>'
     return out, width
 
@@ -76,10 +80,18 @@ def status_rows(palette: dict) -> str:
         y = top + i * 46
         segments = []
         for s in range(10):
-            fill = palette["accent"] if s < value else palette["empty"]
-            segments.append(
-                f'<rect x="{856 + s * 26}" y="{y}" width="22" height="14" fill="{fill}"/>'
-            )
+            if s < value:
+                segments.append(
+                    f'<rect x="{856 + s * 26}" y="{y}" width="22" height="14" '
+                    f'fill="{palette["accent"]}">'
+                    f'<animate attributeName="width" from="0" to="22" dur="0.5s" '
+                    f'begin="0s" fill="freeze"/></rect>'
+                )
+            else:
+                segments.append(
+                    f'<rect x="{856 + s * 26}" y="{y}" width="22" height="14" '
+                    f'fill="{palette["empty"]}"/>'
+                )
         rows.append(
             f'<text x="660" y="{y + 13}" font-family="{MONO}" font-size="16" '
             f'letter-spacing="1" fill="{palette["ink"]}">{label}</text>'
@@ -99,6 +111,7 @@ def hero_svg(theme: str) -> str:
     )
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">
 <rect width="{W}" height="{H}" fill="{p["bg"]}"/>
+<defs><clipPath id="frame"><rect x="16" y="16" width="{W - 32}" height="{H - 32}"/></clipPath></defs>
 <rect x="8" y="8" width="{W - 16}" height="{H - 16}" fill="none" stroke="{p["border"]}" stroke-width="2"/>
 <rect x="16" y="16" width="{W - 32}" height="{H - 32}" fill="none" stroke="{p["border"]}" stroke-width="1" opacity=".4"/>
 {corners}
@@ -106,6 +119,9 @@ def hero_svg(theme: str) -> str:
 <text x="{W - 44}" y="56" text-anchor="end" font-family="{MONO}" font-size="15" letter-spacing="3" fill="{p["muted"]}">PLAYER STATUS</text>
 {name}
 <text x="44" y="212" font-family="{MONO}" font-size="22" letter-spacing="2" fill="{p["accent"]}">CLASS : AI × ANDROID</text>
+<rect x="356" y="195" width="10" height="20" fill="{p["accent"]}">
+<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.51;1" dur="1s" repeatCount="indefinite"/>
+</rect>
 <text x="44" y="246" font-family="{MONO}" font-size="16" letter-spacing="1" fill="{p["muted"]}">Fuzhou University · Computer Science · Class of 2028</text>
 <line x1="640" y1="150" x2="640" y2="352" stroke="{p["border"]}" stroke-width="1"/>
 <text x="660" y="112" font-family="{MONO}" font-size="15" letter-spacing="3" fill="{p["muted"]}">SKILLS</text>
@@ -114,7 +130,13 @@ def hero_svg(theme: str) -> str:
 <text x="44" y="412" font-family="{MONO}" font-size="15" letter-spacing="2" fill="{p["muted"]}">ACHIEVEMENTS 07</text>
 <text x="300" y="412" font-family="{MONO}" font-size="15" letter-spacing="2" fill="{p["muted"]}">QUESTS 02</text>
 <text x="470" y="412" font-family="{MONO}" font-size="15" letter-spacing="2" fill="{p["muted"]}">BLOG naojianghh.github.io</text>
-<text x="{W - 44}" y="412" text-anchor="end" font-family="{MONO}" font-size="15" letter-spacing="2" fill="{p["accent"]}">▶ PRESS START</text>
+<text x="{W - 44}" y="412" text-anchor="end" font-family="{MONO}" font-size="15" letter-spacing="2" fill="{p["accent"]}">▶ PRESS START<animate attributeName="opacity" values="1;.25;1" dur="1.6s" repeatCount="indefinite"/></text>
+<g clip-path="url(#frame)" opacity="0">
+<rect x="16" y="20" width="{W - 32}" height="1" fill="{p["accent"]}">
+<animate attributeName="y" values="20;420" dur="7s" repeatCount="indefinite"/>
+</rect>
+<animate attributeName="opacity" values="0;.05;.05;0" keyTimes="0;.12;.88;1" dur="7s" repeatCount="indefinite"/>
+</g>
 </svg>
 """
 
@@ -123,8 +145,12 @@ def blog_button() -> str:
     p = PALETTES["dark"]
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 60" width="380" height="60">
 <rect width="380" height="60" fill="{p["bg"]}"/>
-<rect x="2" y="2" width="376" height="56" fill="none" stroke="{p["accent"]}" stroke-width="2"/>
-<rect x="12" y="20" width="12" height="12" fill="{p["accent"]}"/>
+<rect x="2" y="2" width="376" height="56" fill="none" stroke="{p["accent"]}" stroke-width="2">
+<animate attributeName="stroke-opacity" values="1;.45;1" dur="2s" repeatCount="indefinite"/>
+</rect>
+<rect x="12" y="20" width="12" height="12" fill="{p["accent"]}">
+<animate attributeName="opacity" values="1;.3;1" dur="1.2s" repeatCount="indefinite"/>
+</rect>
 <text x="38" y="34" font-family="{MONO}" font-size="18" letter-spacing="3" fill="{p["accent"]}">VISIT BLOG</text>
 <text x="366" y="35" text-anchor="end" font-family="{MONO}" font-size="15" fill="{p["muted"]}">naojianghh.github.io</text>
 </svg>
