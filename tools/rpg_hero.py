@@ -140,6 +140,14 @@ def hero_svg(theme: str) -> str:
 <text x="44" y="56" font-family="{MONO}" font-size="15" letter-spacing="3" fill="{p["muted"]}">SAVE FILE 01</text>
 <text x="{W - 44}" y="56" text-anchor="end" font-family="{MONO}" font-size="15" letter-spacing="3" fill="{p["muted"]}">PLAYER STATUS</text>
 {name}
+<g fill="#58a6ff" opacity="0" transform="translate(-3 0)">
+<animate attributeName="opacity" values="0;0;.5;.5;0" keyTimes="0;.93;.94;.96;.97" dur="8s" repeatCount="indefinite"/>
+{body}
+</g>
+<g fill="#f85149" opacity="0" transform="translate(3 0)">
+<animate attributeName="opacity" values="0;0;.5;.5;0" keyTimes="0;.93;.94;.96;.97" dur="8s" repeatCount="indefinite"/>
+{body}
+</g>
 <rect x="-260" y="80" width="150" height="100" fill="url(#shine)" clip-path="url(#nameClip)">
 <animate attributeName="x" values="-260;760" dur="6s" begin="1.5s" repeatCount="indefinite"/>
 </rect>
@@ -148,6 +156,26 @@ def hero_svg(theme: str) -> str:
 <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.51;1" dur="1s" repeatCount="indefinite"/>
 </rect>
 <text x="44" y="246" font-family="{MONO}" font-size="16" letter-spacing="1" fill="{p["muted"]}">Fuzhou University · Computer Science · Class of 2028</text>
+<g transform="translate(64 280)">
+<g>
+<animateTransform attributeName="transform" type="translate" values="0 0;0 -10;0 0" dur="3.8s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/>
+<g transform="scale(2)">
+<g fill="#58a6ff" opacity=".9">
+<rect x="6" y="8" width="20" height="16"/>
+<rect x="9" y="4" width="14" height="5"/>
+<rect x="6" y="24" width="5" height="4"/>
+<rect x="13" y="24" width="5" height="4"/>
+<rect x="20" y="24" width="5" height="4"/>
+</g>
+<rect x="11" y="12" width="4" height="5" fill="{p["bg"]}">
+<animate attributeName="height" values="5;5;1;5;5" keyTimes="0;.45;.5;.55;1" dur="4.2s" repeatCount="indefinite"/>
+</rect>
+<rect x="18" y="12" width="4" height="5" fill="{p["bg"]}">
+<animate attributeName="height" values="5;5;1;5;5" keyTimes="0;.45;.5;.55;1" dur="4.2s" repeatCount="indefinite"/>
+</rect>
+</g>
+</g>
+</g>
 <line x1="640" y1="150" x2="640" y2="352" stroke="{p["border"]}" stroke-width="1"/>
 <text x="660" y="112" font-family="{MONO}" font-size="15" letter-spacing="3" fill="{p["muted"]}">SKILLS</text>
 {status_rows(p)}
