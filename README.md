@@ -55,20 +55,8 @@
 - [**SHYL-WJ86-online**](https://github.com/naojianghh/SHYL-WJ86-online) — online debugging for the lab experiment box, running assembly directly in the browser <sub>实验箱芯片在线调试</sub> · JavaScript
 - [**hospital-preconsult-agent**](https://github.com/naojianghh/hospital-preconsult-agent) — pre-consultation agent for hospital visits <sub>医院预问诊智能体</sub> · Python
 
-### 📊 GitHub Stats
-
-<div align="center">
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=naojianghh&show_icons=true&hide_border=true&theme=github_dark">
-  <img alt="GitHub stats" src="https://github-readme-stats.vercel.app/api?username=naojianghh&show_icons=true&hide_border=true">
-</picture>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=naojianghh&layout=compact&hide_border=true&langs_count=6&card_width=400&theme=github_dark">
-  <img alt="Top languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=naojianghh&layout=compact&hide_border=true&langs_count=6&card_width=400">
-</picture>
-
+<p align="center">
 <img src="assets/divider.svg" width="100%" alt="">
+</p>
 
-</div>
+<p align="center"><sub>Always shipping. Always learning.</sub></p>
