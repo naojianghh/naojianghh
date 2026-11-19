@@ -53,7 +53,6 @@
 - **Yijie** <sub>翌界</sub> — an AI-driven dynamic interface interaction system <sub>基于 AI 的新一代动态界面交互系统</sub>. iCAN AI Challenge national first prize, Cross-Strait competition national second prize.
 - **Lingshu AI** <sub>灵枢·AI</sub> — a multimodal TCM mind-body health agent built on edge–cloud collaboration <sub>基于端云协同的中医多模态身心健康智能体</sub>. National software innovation competition East China second prize, three provincial/national awards in total.
 - [**SHYL-WJ86-online**](https://github.com/naojianghh/SHYL-WJ86-online) — online debugging for the lab experiment box, running assembly directly in the browser <sub>实验箱芯片在线调试</sub> · JavaScript
-- [**hospital-preconsult-agent**](https://github.com/naojianghh/hospital-preconsult-agent) — pre-consultation agent for hospital visits <sub>医院预问诊智能体</sub> · Python
 
 <p align="center">
 <img src="assets/divider.svg" width="100%" alt="">
