@@ -1,12 +1,12 @@
 <p align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg?v=4">
-  <img alt="NAOJIANGHH — player status" src="assets/hero-light.svg?v=4" width="1100">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg?v=5">
+  <img alt="NAOJIANGHH — player status" src="assets/hero-light.svg?v=5" width="1100">
 </picture>
 </p>
 
 <p align="center">
-<a href="https://naojianghh.github.io/"><img src="assets/blog-button.svg?v=4" alt="Blog — naojianghh.github.io" height="52"></a>
+<a href="https://naojianghh.github.io/"><img src="assets/blog-button.svg?v=5" alt="Blog — naojianghh.github.io" height="52"></a>
 </p>
 
 <p align="center"><img src="assets/ticker.svg?v=2" width="1100" alt=""></p>
