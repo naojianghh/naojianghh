@@ -13,7 +13,7 @@
 
 - **CLASS** — AI × Android
 - **GUILD** — Fuzhou University · Computer Science · Class of 2028
-- **NOW** — multimodal agents and edge–cloud collaboration <sub>多模态智能体 · 端云协同</sub>
+- **NOW** —  I am currently a member of the [**SOSD**](https://sosd.fzu.edu.cn/home) development team 
 - **CONTACT** — [GitHub](https://github.com/naojianghh) · [Blog](https://naojianghh.github.io/) · [Email](mailto:2731033935@qq.com)
 
 ## 🏆 ACHIEVEMENTS
