@@ -26,18 +26,18 @@ TICKER_TEXT = (
 
 def ticker() -> str:
     copies = "".join(
-        f'<text x="{x}" y="23" font-family="{MONO}" font-size="13" letter-spacing="2" '
+        f'<text x="{x}" y="24" font-family="{MONO}" font-size="13" letter-spacing="2" '
         f'fill="{MUTED}">{TICKER_TEXT}</text>'
-        for x in (16, 1216, 2416)
+        for x in (16, 1516, 3016)
     )
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 36" width="1200" height="36">
-<rect width="1200" height="36" fill="{BG}"/>
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 38" width="1200" height="38">
+<rect width="1200" height="38" fill="{BG}"/>
 <line x1="0" y1="1" x2="1200" y2="1" stroke="{LINE}" stroke-width="1"/>
-<line x1="0" y1="35" x2="1200" y2="35" stroke="{LINE}" stroke-width="1"/>
-<clipPath id="t"><rect x="0" y="2" width="1200" height="32"/></clipPath>
+<line x1="0" y1="37" x2="1200" y2="37" stroke="{LINE}" stroke-width="1"/>
+<clipPath id="t"><rect x="0" y="2" width="1200" height="34"/></clipPath>
 <g clip-path="url(#t)">
 <g>
-<animateTransform attributeName="transform" type="translate" from="0 0" to="-1200 0" dur="24s" repeatCount="indefinite"/>
+<animateTransform attributeName="transform" type="translate" from="0 0" to="-1500 0" dur="26s" repeatCount="indefinite"/>
 {copies}
 </g>
 </g>

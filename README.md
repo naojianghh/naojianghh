@@ -9,7 +9,7 @@
 <a href="https://naojianghh.github.io/"><img src="assets/blog-button.svg?v=4" alt="Blog — naojianghh.github.io" height="52"></a>
 </p>
 
-<p align="center"><img src="assets/ticker.svg" width="1100" alt=""></p>
+<p align="center"><img src="assets/ticker.svg?v=2" width="1100" alt=""></p>
 
 ## <img src="assets/icons/player.svg" width="26" alt=""> PLAYER
 
