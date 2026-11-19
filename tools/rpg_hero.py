@@ -47,7 +47,7 @@ STATS = [
 MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace"
 
 
-def pixel_text(text: str, x: int, y: int, palette: dict, shadow: bool) -> tuple[str, int]:
+def pixel_body(text: str, x: int, y: int) -> tuple[str, int]:
     glyphs = [FONT.get(char, FONT[" "]) for char in text.upper()]
     rects: list[str] = []
     cursor = x
@@ -60,8 +60,11 @@ def pixel_text(text: str, x: int, y: int, palette: dict, shadow: bool) -> tuple[
                         f'width="{NAME_CW}" height="{NAME_CH}"/>'
                     )
         cursor += (len(glyph[0]) + 1) * NAME_CW
-    width = cursor - x - NAME_CW
-    body = "".join(rects)
+    return "".join(rects), cursor - x - NAME_CW
+
+
+def pixel_text(text: str, x: int, y: int, palette: dict, shadow: bool) -> tuple[str, int]:
+    body, width = pixel_body(text, x, y)
     out = ""
     if shadow:
         out += (
@@ -105,19 +108,41 @@ def status_rows(palette: dict) -> str:
 def hero_svg(theme: str) -> str:
     p = PALETTES[theme]
     name, name_w = pixel_text("NAOJIANGHH", 44, 86, p, shadow=True)
+    body, _ = pixel_body("NAOJIANGHH", 44, 86)
     corners = "".join(
         f'<rect x="{x}" y="{y}" width="10" height="10" fill="{p["accent"]}"/>'
         for x, y in ((8, 8), (W - 18, 8), (8, H - 18), (W - 18, H - 18))
     )
+    stars = "".join(
+        f'<rect x="{30 + (i * 167) % 1120}" y="-20" width="2" height="2" '
+        f'fill="{p["accent"]}" opacity=".2">'
+        f'<animate attributeName="y" values="-20;460" dur="{9 + (i % 5) * 2}s" '
+        f'begin="-{(i * 2.3) % 9:.1f}s" repeatCount="indefinite"/></rect>'
+        for i in range(24)
+    )
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">
 <rect width="{W}" height="{H}" fill="{p["bg"]}"/>
-<defs><clipPath id="frame"><rect x="16" y="16" width="{W - 32}" height="{H - 32}"/></clipPath></defs>
-<rect x="8" y="8" width="{W - 16}" height="{H - 16}" fill="none" stroke="{p["border"]}" stroke-width="2"/>
+<defs>
+<clipPath id="frame"><rect x="16" y="16" width="{W - 32}" height="{H - 32}"/></clipPath>
+<clipPath id="nameClip">{body}</clipPath>
+<linearGradient id="shine" x1="0" x2="1">
+<stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+<stop offset=".5" stop-color="#ffffff" stop-opacity=".55"/>
+<stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+</linearGradient>
+</defs>
+<g clip-path="url(#frame)">{stars}</g>
+<rect x="8" y="8" width="{W - 16}" height="{H - 16}" fill="none" stroke="{p["border"]}" stroke-width="2">
+<animate attributeName="stroke-opacity" values="1;.55;1" dur="5s" repeatCount="indefinite"/>
+</rect>
 <rect x="16" y="16" width="{W - 32}" height="{H - 32}" fill="none" stroke="{p["border"]}" stroke-width="1" opacity=".4"/>
 {corners}
 <text x="44" y="56" font-family="{MONO}" font-size="15" letter-spacing="3" fill="{p["muted"]}">SAVE FILE 01</text>
 <text x="{W - 44}" y="56" text-anchor="end" font-family="{MONO}" font-size="15" letter-spacing="3" fill="{p["muted"]}">PLAYER STATUS</text>
 {name}
+<rect x="-260" y="80" width="150" height="100" fill="url(#shine)" clip-path="url(#nameClip)">
+<animate attributeName="x" values="-260;760" dur="6s" begin="1.5s" repeatCount="indefinite"/>
+</rect>
 <text x="44" y="212" font-family="{MONO}" font-size="22" letter-spacing="2" fill="{p["accent"]}">CLASS : AI × ANDROID</text>
 <rect x="356" y="195" width="10" height="20" fill="{p["accent"]}">
 <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.51;1" dur="1s" repeatCount="indefinite"/>
@@ -144,9 +169,17 @@ def hero_svg(theme: str) -> str:
 def blog_button() -> str:
     p = PALETTES["dark"]
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 60" width="380" height="60">
+<defs><linearGradient id="bs" x1="0" x2="1">
+<stop offset="0" stop-color="#7ee787" stop-opacity="0"/>
+<stop offset=".5" stop-color="#7ee787" stop-opacity=".22"/>
+<stop offset="1" stop-color="#7ee787" stop-opacity="0"/>
+</linearGradient></defs>
 <rect width="380" height="60" fill="{p["bg"]}"/>
 <rect x="2" y="2" width="376" height="56" fill="none" stroke="{p["accent"]}" stroke-width="2">
 <animate attributeName="stroke-opacity" values="1;.45;1" dur="2s" repeatCount="indefinite"/>
+</rect>
+<rect x="-100" y="2" width="90" height="56" fill="url(#bs)">
+<animate attributeName="x" values="-100;400" dur="3.5s" repeatCount="indefinite"/>
 </rect>
 <rect x="12" y="20" width="12" height="12" fill="{p["accent"]}">
 <animate attributeName="opacity" values="1;.3;1" dur="1.2s" repeatCount="indefinite"/>
